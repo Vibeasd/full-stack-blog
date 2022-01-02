@@ -1,8 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { LabelTypeDto } from './dto/label-type.dto';
+import {InjectRepository} from "@mikro-orm/nestjs";
+import {LabelType} from "./entities/label-type.entity";
+import {EntityRepository} from "@mikro-orm/core";
 
 @Injectable()
 export class LabelTypeService {
+
+  constructor( @InjectRepository(LabelType)
+               private labelTypeRepository: EntityRepository<LabelType>) {
+
+  }
+
   create(createLabelTypeDto: LabelTypeDto) {
     return 'This action adds a new labelType';
   }

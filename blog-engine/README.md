@@ -10,24 +10,30 @@
     - role: UserRole
     - username: string
     - password: string
+    - labelTypes: LabelType []
+    - posts: Post []
+    - comments: Comment []
+    - approvedPosts: []
 
 - Post
     - id: number
-    - ownerId: number
-    - approverId: number
+    - ownerUser: User
+    - approverUser: User
     - status: PostStatus
     - context: string
+    - comments: Comment []  
     - labelTypes: LabelType []
    
 - LabelType
     - id: number
-    - ownerId: number
+    - ownerUser: User
+    - posts: Post []  
     - type: string
 
 - Comment
     - id: number
-    - ownerId: number
-    - postId: number
+    - ownerUser: User
+    - post: Post
     - message: string
 
 
