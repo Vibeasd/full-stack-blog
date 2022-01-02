@@ -18,9 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "dbup": "npx mikro-orm migration:create",
+    "dbmig": "npx ts-node ./migrations/migrate.ts"
   },
   "dependencies": {
+    "@mikro-orm/core": "^4.5.10",
+    "@mikro-orm/nestjs": "^4.3.1",
+    "@mikro-orm/sqlite": "^4.5.10",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
@@ -28,7 +33,15 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
   },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  },
   "devDependencies": {
+    "@mikro-orm/cli": "^4.5.10",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
