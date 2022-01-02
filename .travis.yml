@@ -1,0 +1,24 @@
+jobs:
+  include:
+
+  - stage: test
+    language: node_js
+    node_js: node
+    cache:
+      directories:
+        - node_modules
+    before_install: cd blog-engine
+    script: npm run test && npm run test:e2e
+
+  - stage: deploy1
+    language: node_js
+    node_js: node
+    before_install: cd blog-engine
+    install: skip
+    script: skip
+    deploy:
+      provider: heroku
+      api_key:
+        secure: "Ow/b7BecDplXMspu9Zamk49iBYKmAxPoqpkyFsxlA8VsG0NxcOOeROwDt6ppmg04PKrXkxcvhUtzKllhrO1UOam0fSJWTs5LeMC3lJRRecIWirRO/s1e6MFDxiThLN+r8f86yQFyepHqxLh/Iauqyp0tGXN8J0cR+FBTLySCLJuH/Jtl5A98Wvz8/OunsWXZIAO+CDpl5UjFA9niGqfP+vmncYq6JQ2iB/QxNIESi3ZyyZxRq/4wlU82o7RYhQh1Mle+NH5sA7Uiu1lBAVAcSz9fA+bDy/r3vV+eeMegWuVQaIfW+mVh/OXoraO8QrXLEn2KP28aJknEXnlSXPgbCSzhDdn68Li7+QsQa08dBKMz0kxloqqsbOzTOVnW0p29hxImS/aWIrOZsXCBQm3itVN7Ekc5qZHn2dl0rEjMn0TAr+vX9DYL+PtmNNd5ih50/Yv3YhBA/tRukCcFT0pELtDFB2Ku+3iAeFZNHRqRQn6T0rd2E0+oNKNdkFxftXIOV2J9g6n1sV/KsEj7iVDdH+s7zaPswFfhMa6h7ry6MwxypefLCus1EylXzkV1hfjR/OPeFoiiLhBTaIABW8S/hZCv6jKqqRpASHa0+nqmF3qRY73vaTSDrKHz3XXV2LjaCtQoblk79huqGm03PnMkiF2DAiYqk6JUcFmgVwM7Xgc="
+      app: full-stack-blog-2022
+      on: develop
