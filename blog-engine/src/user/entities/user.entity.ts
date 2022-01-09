@@ -13,7 +13,7 @@ export class User extends BaseEntity{
 
     @Property()
     @Unique()
-    username: string;
+    userName: string;
 
     @Property()
     password: string;

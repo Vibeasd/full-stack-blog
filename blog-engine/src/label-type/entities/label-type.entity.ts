@@ -6,7 +6,7 @@ import {Post} from "../../post/entities/post.entity";
 @Entity()
 export class LabelType extends BaseEntity{
 
-    @Property()
+    @Property({unique: true})
     type: string;
 
     @ManyToOne(() => User)
