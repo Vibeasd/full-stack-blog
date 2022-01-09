@@ -39,3 +39,5 @@ lerna-debug.log*
 
 #Database
 *.sqlite
+
+database/blog.sqlite
