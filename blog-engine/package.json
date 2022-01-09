@@ -11,8 +11,8 @@
     "heroku-postbuild": "npm run build && npm run migrate:prod",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "env-cmd -e development nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "start:dev": "env-cmd -e development nest start --watch",
+    "start:debug": "env-cmd -e development nest start --debug --watch",
     "start:prod": "cd dist && node src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -22,7 +22,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "dbup": "npx mikro-orm migration:create",
     "dbmig": "npx ts-node ./migrations/migrate.ts",
-    "migrate:prod": "cd dist && node migrations/migrate && cd .. && env-cmd -e productionSeed mikro-orm database:import migrations/admin-seed.sql"
+    "migrate:prod": "cd dist && node migrations/migrate && cd .. && env-cmd -e productionSeed mikro-orm database:import migrations/admin-seed.sql",
+    "migration:create": "env-cmd -e development npm run migrate:dev && env-cmd -e development mikro-orm migration:create",
+    "migrate:dev": "env-cmd -e development ts-node ./migrations/migrate.ts"
   },
   "dependencies": {
     "@mikro-orm/core": "^4.5.10",
