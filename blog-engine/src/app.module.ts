@@ -6,10 +6,22 @@ import { PostModule } from './post/post.module';
 import {MikroOrmModule} from "@mikro-orm/nestjs";
 import mikroConf from 'mikro-orm.config';
 import {AuthModule} from "./auth/auth/auth.module";
+import {APP_GUARD} from "@nestjs/core";
+import {JwtAuthGuard} from "./auth/auth/guards/jwt-auth.guard";
+import {RolesGuard} from "./auth/auth/guards/roles.guard";
 
 @Module({
   imports: [MikroOrmModule.forRoot(mikroConf), LabelTypeModule, UserModule, CommentModule, PostModule, AuthModule],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}
