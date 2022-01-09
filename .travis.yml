@@ -14,7 +14,8 @@ jobs:
     node_js: node
     before_install: cd blog-engine
     install: skip
-    script: skip
+    script: 
+      - gem install dpl-heroku
     deploy:
       provider: heroku
       api_key:
