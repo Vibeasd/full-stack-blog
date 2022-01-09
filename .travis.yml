@@ -15,7 +15,7 @@ jobs:
     before_install: cd blog-engine
     install: skip
     script:
-      - gem install dpl
+      - gem install faraday -v 1.9.3
     deploy:
       provider: heroku
       api_key:
