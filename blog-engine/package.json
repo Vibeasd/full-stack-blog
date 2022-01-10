@@ -22,9 +22,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "dbup": "npx mikro-orm migration:create",
     "dbmig": "npx ts-node ./migrations/migrate.ts",
-    "migrate:prod": "cd dist && node migrations/migrate && cd .. && env-cmd -e productionSeed mikro-orm database:import migrations/admin-seed.sql",
-    "migration:create": "env-cmd -e development npm run migrate:dev && env-cmd -e development mikro-orm migration:create",
-    "migrate:dev": "env-cmd -e development ts-node ./migrations/migrate.ts"
+    "migrate:prod": "cd dist && node migrations/migrate && cd .. && mikro-orm database:import migrations/admin-seed.sql",
+    "migration:create": "npm run migrate:dev && mikro-orm migration:create",
+    "migrate:dev": "ts-node ./migrations/migrate.ts"
   },
   "dependencies": {
     "@mikro-orm/core": "^4.5.10",
