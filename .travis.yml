@@ -8,14 +8,16 @@ jobs:
       directories:
         - node_modules
     before_install: cd blog-engine
+     
 
   - stage: deploy1
     language: node_js
     node_js: node
-    before_install: cd blog-engine
+    before_install:
+      - cd blog-engine
+      - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.9.3
     install: skip
-    script:
-      - gem install faraday -v 1.9.3
+    script: skip
     deploy:
       provider: heroku
       api_key:
